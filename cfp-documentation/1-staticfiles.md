@@ -26,3 +26,23 @@ Try it with:
 `npm run start:dev`
 
 and enter to [http://localhost:3000](http://localhost:3000)
+
+`npm install --save @nestjs/serve-static`
+
+In `app.controller.ts` change the controller path: `@Controller('api')`.
+
+In `app.controller.ts` change the controller path: `@Controller('api')`.
+
+In `app.module.ts` add 
+```js
+ [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
+  ],
+```
+
+Create the static files in `client` folder.
+
+See the second commit diff as example.
+
