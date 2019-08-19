@@ -44,5 +44,5 @@ In `app.module.ts` add
 
 Create the static files in `client` folder.
 
-See the second commit diff as example.
+See the [second commit diff](https://github.com/jdottori/nest-cfp-demo/commit/87d9e9e78e2acb5e8300c21ea98c73b7484fdb2c) as example.
 
