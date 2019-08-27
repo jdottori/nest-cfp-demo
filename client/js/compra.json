@@ -1,0 +1,13 @@
+{
+    "status": "OK",
+    "compras": [
+        {
+            "producto": "Manzana",
+            "precio": "20"
+        },
+        {
+            "producto": "Lechuga",
+            "precio": "14"
+        }
+    ]
+}

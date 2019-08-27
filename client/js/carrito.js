@@ -5,6 +5,15 @@ btnTotal.addEventListener("click", sumar);
 
 let compras = [];
 
+async function load(){
+  let r = await fetch("/js/compra.json");
+  let json = await r.json();
+  compras = json.compras;
+  mostrarTablaCompras();
+}
+
+load();
+
 function agregar() {
   console.log("Funcion Agregar");
   let producto = document.querySelector('#producto').value;
