@@ -29,12 +29,10 @@ export class ProductoService {
         
         const elementos = archivo.split('\n').map(p => p.replace('\r', '')).map(p => p.split(','));
 
-        this.listaProductos = [];
-
-        for (let i = 0; i < elementos.length; i++) {
+        this.listaProductos = elementos.forEach(elem => {
             let producto = new Producto(elementos[i][0], parseInt(elementos[i][1]));
             
             this.listaProductos.push(producto);
-        }
+        });
     }
 }
