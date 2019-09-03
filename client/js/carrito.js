@@ -6,9 +6,9 @@ btnTotal.addEventListener("click", sumar);
 let compras = [];
 
 async function load(){
-  let r = await fetch("/js/compra.json");
+  let r = await fetch("/productos");
   let json = await r.json();
-  compras = json.compras;
+  compras = json;
   mostrarTablaCompras();
 }
 
@@ -47,7 +47,7 @@ function mostrarTablaCompras() {
     for (let r of compras) {
         html += `
             <tr>
-                <td>${r.producto}</td>
+                <td>${r.nombreProducto}</td>
                 <td>${r.precio}</td>
             </tr>
         `; //la comilla es el acento inverso
