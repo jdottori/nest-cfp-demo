@@ -27,23 +27,23 @@ export class ProductoService {
     public create(prod: Producto) {
         console.log("PRODUCTO: ");
         console.log(prod);
+        console.log(prod['msg']);
+        console.log(typeof prod);
+        console.log(typeof prod['msg']);
         console.log("----------------");
-        //esto anda, en memoria queda guardado y el GET anda bien pq nunca llama al metodo
-        this.listaProductos.push(prod); 
-        //esto no anda
-        if(prod.getNombreProducto() && prod.getPrecio())
-        {
+        const producto = new Producto(prod['nombre_producto'], prod['precio']);
+        if (producto.getNombreProducto() && producto.getPrecio()) {
             this.listaProductos.push(prod);
-            console.log(prod);
+            console.log(producto);
             fs.appendFileSync('productos.csv',
-                prod.getNombreProducto()+","
-                +prod.getPrecio());
+                producto.getNombreProducto() + ","
+                + producto.getPrecio());
         }
     }
 
     private loadProductos(): void {
         let archivo = fs.readFileSync('productos.csv', 'utf8');
-        
+
         const elementos = archivo.split('\n').map(p => p.replace('\r', '')).map(p => p.split(','));
 
         this.listaProductos = [];
