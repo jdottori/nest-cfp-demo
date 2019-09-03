@@ -24,15 +24,32 @@ export class ProductoService {
         return this.listaProductos[index];
     }
 
+    public create(prod: Producto) {
+        console.log("PRODUCTO: ");
+        console.log(prod);
+        console.log(prod['msg']);
+        console.log(typeof prod);
+        console.log(typeof prod['msg']);
+        console.log("----------------");
+        const producto = new Producto(prod['nombre_producto'], prod['precio']);
+        if (producto.getNombreProducto() && producto.getPrecio()) {
+            this.listaProductos.push(prod);
+            console.log(producto);
+            fs.appendFileSync('productos.csv',
+                producto.getNombreProducto() + ","
+                + producto.getPrecio());
+        }
+    }
+
     private loadProductos(): void {
         let archivo = fs.readFileSync('productos.csv', 'utf8');
-        
+
         const elementos = archivo.split('\n').map(p => p.replace('\r', '')).map(p => p.split(','));
 
-        this.listaProductos = elementos.forEach(elem => {
+        this.listaProductos = [];
+        for (let i = 0; i < elementos.length; i++) {
             let producto = new Producto(elementos[i][0], parseInt(elementos[i][1]));
-            
             this.listaProductos.push(producto);
-        });
+        }
     }
 }
