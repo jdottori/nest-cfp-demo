@@ -16,7 +16,7 @@ async function load(){
 
 load();
 
-function agregar() {
+async function agregar() {
   console.log("Funcion Agregar");
   let producto = document.querySelector('#producto').value;
   let precio = parseInt(document.querySelector('#precio').value);
@@ -25,18 +25,27 @@ function agregar() {
     "precio": precio
   }
   
-  fetch("/productos", {
+  compras.push(renglon);
+  mostrarTablaCompras();
+  let response = await fetch("/productos", {
     "method": "POST",
     "headers": {
       "Content-Type": "application/json"
     },
     "body": JSON.stringify(renglon)
   })
-  load();
-  mostrarTablaCompras();
+  if(response.ok) {
+    let json = await response.text();
+    if(json != "ok")
+    {
+      // alert("error en datos");
+      compras.pop();
+      mostrarTablaCompras();
+    }
+  }
 }
 
-setInterval(load, 250);
+//setInterval(load, 250);
 
 function sumar() {
   console.log("Funcion Sumar");
