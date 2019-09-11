@@ -29,7 +29,7 @@ export class ProductoService {
         console.log(prod);
         console.log(typeof prod);
         console.log("----------------");
-        const producto = new Producto(prod['nombre_producto'], prod['precio']);
+        const producto = new Producto(prod['nombreProducto'], prod['precio']);
         console.log(producto);
         if (producto.getNombreProducto() && producto.getPrecio()) {
             this.listaProductos.push(prod);

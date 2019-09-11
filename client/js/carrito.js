@@ -12,6 +12,8 @@ async function load(){
   mostrarTablaCompras();
 }
 
+
+
 load();
 
 function agregar() {
@@ -19,10 +21,17 @@ function agregar() {
   let producto = document.querySelector('#producto').value;
   let precio = parseInt(document.querySelector('#precio').value);
   let renglon = {
-    "producto": producto,
+    "nombreProducto": producto,
     "precio": precio
   }
   compras.push(renglon);
+  fetch("/productos", {
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": JSON.stringify(renglon)
+  })
   mostrarTablaCompras();
 }
 
