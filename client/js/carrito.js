@@ -24,7 +24,7 @@ function agregar() {
     "nombreProducto": producto,
     "precio": precio
   }
-  compras.push(renglon);
+  
   fetch("/productos", {
     "method": "POST",
     "headers": {
@@ -32,8 +32,11 @@ function agregar() {
     },
     "body": JSON.stringify(renglon)
   })
+  load();
   mostrarTablaCompras();
 }
+
+setInterval(load, 250);
 
 function sumar() {
   console.log("Funcion Sumar");

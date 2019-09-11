@@ -29,9 +29,10 @@ export class ProductoService {
         console.log(prod);
         console.log(typeof prod);
         console.log("----------------");
-        const producto = new Producto(prod['nombreProducto'], prod['precio']);
-        console.log(producto);
-        if (producto.getNombreProducto() && producto.getPrecio()) {
+        let nombre = prod['nombreProducto'];
+        let precio = prod['precio'];
+        if (nombre && precio && parseInt(precio) > 0) {
+            const producto = new Producto(nombre, precio);
             this.listaProductos.push(prod);
             console.log(producto);
             fs.appendFileSync('productos.csv',
