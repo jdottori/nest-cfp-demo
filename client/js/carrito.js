@@ -65,13 +65,32 @@ function sumar() {
 
 function mostrarTablaCompras() {
     html = "";
-    for (let r of compras) {
+    for (let i = 0; i < compras.length; i++) {
+        let r = compras[i];
         html += `
             <tr>
                 <td>${r.nombreProducto}</td>
                 <td>${r.precio}</td>
+                <td><button class="btn-delete-producto" pos="${i}">Borrar</button></td>
             </tr>
         `; //la comilla es el acento inverso
     }
     document.querySelector("#tblCompras").innerHTML = html;
+    let botonesBorrar = document.querySelectorAll(".btn-delete-producto");
+    botonesBorrar.forEach(e => {
+      e.addEventListener("click", btnBorrarClick);
+    }); 
+}
+
+async function btnBorrarClick(){
+  let pos = this.getAttribute("pos");
+  console.log(this)
+  console.log(pos);
+  let response = await fetch(`/productos/${pos}`, {
+    "method": "DELETE",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  })
+  load();
 }
