@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Delete } from '@nestjs/common';
 import { ProductoService } from './producto.service';
 import { Producto } from './producto';
 
@@ -20,4 +20,10 @@ export class ProductoController {
     create(@Body() prod: any): string {
         return this.productoService.create(prod);
     }
+
+    @Delete(':index')
+    public deleteProducto(@Param('index') index): boolean {
+        return this.productoService.deleteProducto(parseInt(index));
+    }
+
 }

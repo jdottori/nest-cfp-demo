@@ -56,4 +56,9 @@ export class ProductoService {
             this.listaProductos.push(producto);
         }
     }
+
+    public deleteProducto(position: number): boolean {
+        let removed = this.listaProductos.splice(position,1);
+        return removed.length == 1;
+    }
 }
