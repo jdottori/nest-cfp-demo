@@ -61,4 +61,18 @@ export class ProductoService {
         let removed = this.listaProductos.splice(position,1);
         return removed.length == 1;
     }
+
+    public editProducto(position: number, prod: any): boolean {
+        let nombre = prod['nombreProducto'];
+        let precio = prod['precio'];
+        if (nombre && precio && parseInt(precio) > 0) {
+            const producto = new Producto(nombre, precio);
+            this.listaProductos[position] = prod;
+            console.log(producto);
+            return true;
+        }
+        else
+            return false;
+    
+    }
 }
